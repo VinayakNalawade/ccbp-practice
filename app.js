@@ -45,6 +45,8 @@ app.post("/players/", async (request, response) => {
 
   let { playerName, jerseyNumber, role } = details;
 
+  console.log(request);
+
   let query = `INSERT INTO cricket_team 
     (player_name,jersey_number,role)
     VALUES 
@@ -69,6 +71,30 @@ app.get("/players/:playerId", async (request, response) => {
 app.put("/players/:playerId", async (request, response) => {
   let { playerId } = request.params;
 
-  let query = `UPDATE cricket_team SET 
-    `;
+  const obj = request.body;
+
+  let { playerName, jerseyNumber, role } = obj;
+
+  let query = `UPDATE cricket_team 
+  SET player_name = ${playerName},
+  jersey_number = ${jerseyNumber},
+  role = ${role} ;`;
+
+  await db.run(query);
+
+  response.send("Player Details Updated");
 });
+
+//API 5
+app.delete("/players/:playerId", async (request, response) => {
+  let { playerId } = request.params;
+
+  let query = `DELETE FROM cricket_team WHERE player_id = ${playerId}`;
+
+  await db.run(query);
+
+  console.log("Player Removed");
+});
+
+//module export
+module.exports = app;
