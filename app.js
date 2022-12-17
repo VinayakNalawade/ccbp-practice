@@ -43,8 +43,6 @@ app.get("/players/", async (request, response) => {
 app.post("/players/", async (request, response) => {
   let details = request.body;
 
-  console.log(request);
-
   let { playerName, jerseyNumber, role } = details;
 
   let query = `INSERT INTO cricket_team 
@@ -73,8 +71,6 @@ app.put("/players/:playerId", async (request, response) => {
 
   const obj = request.body;
 
-  console.log(request);
-
   let { playerName, jerseyNumber, role } = obj;
 
   let query = `UPDATE cricket_team 
@@ -95,7 +91,7 @@ app.delete("/players/:playerId", async (request, response) => {
 
   await db.run(query);
 
-  console.log("Player Removed");
+  response.send("Player Removed");
 });
 
 //module export
