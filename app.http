@@ -3,16 +3,19 @@ http://localhost:3000/players/
 
 ###
 
-POST http://localhost:3000/players/
+PUT http://localhost:3000/players/11
 
-Content-Type : Application/json 
+Content-Type : application/json
+
 {
-  "playerName": "Maneesh",
-  "jerseyNumber": 54,
-  "role": "All-rounder"
+  "playerName": "Vishal",
+  "jerseyNumber": 10,
+  "role": "Bo"
 }
 
 
 ###
-http://localhost:3000/players/1
+http://localhost:3000/players/2
 
+###
+DELETE http://localhost:3000/players/12
