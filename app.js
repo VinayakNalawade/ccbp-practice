@@ -43,6 +43,8 @@ app.get("/players/", async (request, response) => {
 app.post("/players/", async (request, response) => {
   let details = request.body;
 
+  console.log(request);
+
   let { playerName, jerseyNumber, role } = details;
 
   console.log(request);
@@ -73,16 +75,20 @@ app.put("/players/:playerId", async (request, response) => {
 
   const obj = request.body;
 
+  console.log(request);
+
   let { playerName, jerseyNumber, role } = obj;
 
   let query = `UPDATE cricket_team 
-  SET player_name = ${playerName},
+  SET player_name = '${playerName}',
   jersey_number = ${jerseyNumber},
-  role = ${role} ;`;
+  role = '${role}' ;`;
+
 
   await db.run(query);
 
   response.send("Player Details Updated");
+
 });
 
 //API 5
