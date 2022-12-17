@@ -47,6 +47,8 @@ app.post("/players/", async (request, response) => {
 
   let { playerName, jerseyNumber, role } = details;
 
+  console.log(request);
+
   let query = `INSERT INTO cricket_team 
     (player_name,jersey_number,role)
     VALUES 
@@ -82,9 +84,11 @@ app.put("/players/:playerId", async (request, response) => {
   jersey_number = ${jerseyNumber},
   role = '${role}' ;`;
 
+
   await db.run(query);
 
   response.send("Player Details Updated");
+
 });
 
 //API 5
